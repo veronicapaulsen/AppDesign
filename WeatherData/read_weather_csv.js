@@ -1,0 +1,22 @@
+var fs = require("fs");
+var sql = require( 'sqlite3' );
+
+var db = new sql.Database( 'weather.sqlite' );
+var filename = "weather_data.csv";
+
+function populate_db( fn )
+{
+    var lines = fs.readFileSync( fn ).toString().split( "\n" );
+    for(var i = 0; i < lines.length ; i++)
+    {
+	var split_line = lines[i].split( "," );
+	//MAKE INSERT CALL HERE, there are 14 columns in the table
+	var statement = db.prepare("INSERT INTO data VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	for (var j = 0; j < split_line.length; j++) {
+	    statement.run(split_line[j]);
+	}
+	statement.finalize();
+    }
+}
+
+populate_db(filename);
