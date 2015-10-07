@@ -1,0 +1,10 @@
+<html>
+  <body>
+    <form action="add_enrollement" method="get">
+      <input type="text" name="sid" value="Student ID"></input>
+      <input type="text" name="cid" value="Class ID"></input>
+      <input type="text" name="department" value="Teacher department"></input>
+      <input type="submit"></input>
+    </form>
+  </body>
+</html>
